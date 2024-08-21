@@ -10,10 +10,29 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # Conan 集成
-include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake) 
+include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
+
+# 定义资源目录
+set(ASSETS_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+set(ASSETS_DESTINATION_DIR "${CMAKE_CURRENT_BINARY_DIR}/assets")
+
+# 创建自定义命令来复制资源
+add_custom_command(
+    OUTPUT ${ASSETS_DESTINATION_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${ASSETS_SOURCE_DIR}
+            ${ASSETS_DESTINATION_DIR}
+    DEPENDS ${ASSETS_SOURCE_DIR}
+    COMMENT "Copying assets directory"
+)
+
+# 创建自定义目标
+add_custom_target(copy_assets ALL DEPENDS ${ASSETS_DESTINATION_DIR})
 
 # 添加可执行文件
 add_executable(galaxy main.cpp)
+
+add_dependencies(galaxy copy_assets)
 
 find_package(Crow)
 # 链接 Crow 库和其他依赖
