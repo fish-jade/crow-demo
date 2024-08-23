@@ -5,7 +5,7 @@ def build_image = 'registry.gz.cvte.cn/1602/aoip-ubuntu:1.0.0'
 def docker_registry = 'https://registry.gz.cvte.cn'
 
 pipeline {
-    agent any
+    agent "linux-71-111"
 
     stages {
         stage('Checkout') {
@@ -18,9 +18,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    echo "docker构建开始：${branch}"
                     withDockerRegistry([credentialsId: '6e5c1650-13f9-435e-ad7e-c0a20d0774a1', url: "${docker_registry}"]) {
-                        docker.image(build_image).pull()
-                        
                         docker.image(build_image).inside("-u root") {
                             sh '''
                                 mkdir build
@@ -32,6 +31,7 @@ pipeline {
                             '''
                         }
                     }
+                    echo "docker构建结束：${branch}"
                     // 创建构建完成标记
                     sh "touch ${WORKSPACE}/build/.build_complete"
                 }
