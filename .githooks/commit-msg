@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# 读取 commit message
+commit_msg=$(cat "$1")
+
+# 定义 commit message 格式规则
+# 例如：<type>(<scope>): <subject>
+# 类型可以是 feat, fix, docs, style, refactor, test, chore 等
+pattern='^(feat|fix|docs|style|refactor|test|chore)($$[a-z]+$$)?: .{1,50}$'
+
+# 检查 commit message 是否符合规则
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+    echo "Commit message 格式不正确！"
+    echo "正确格式应为：<type>(<scope>): <subject>"
+    echo "例如：feat(login): add password strength meter"
+    exit 1
+fi
+
+# 如果格式正确，脚本将正常退出
+exit 0

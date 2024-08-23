@@ -1,0 +1,5 @@
+
+[core]
+  hooksPath = .githooks
+[init]
+  templateDir = ./git-template
