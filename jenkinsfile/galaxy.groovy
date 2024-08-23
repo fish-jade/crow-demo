@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 cleanWs()
-                git branch: "${branch}", url: "${url}"
+                checkout([$class: 'GitSCM', branches: [[name: branch]], userRemoteConfigs: [[credentialsId: 'mh1602', url: url]]])
             }
         }
 
