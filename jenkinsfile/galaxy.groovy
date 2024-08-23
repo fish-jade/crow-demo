@@ -5,7 +5,7 @@ def build_image = 'registry.gz.cvte.cn/1602/aoip-ubuntu:1.0.0'
 def docker_registry = 'https://registry.gz.cvte.cn'
 
 pipeline {
-    agent "linux-71-111"
+    agent any
 
     stages {
         stage('Checkout') {
