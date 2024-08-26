@@ -67,13 +67,8 @@ pipeline {
                     // 打包 Release 目录
                     sh "tar -czf ${tar_name} -C ${buildDir} ."
 
-                    // 上传到私有化仓库
-                    withCredentials([usernamePassword(credentialsId: 'artifactory-credentials', usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_PASS')]) {
-                        sh """
-                            curl -uzhangyong1924:AP8genobRHGk28aMVufLNonDeCuZVQXr2gwk1Z -T ${tar_name} \
-                            "https://artifactory.gz.cvte.cn/artifactory/binaries/1602/private-be/aoip/${tar_name}"
-                        """.replace("\n","")
-                    }
+                    sh "curl -uzhangyong1924:AP8genobRHGk28aMVufLNonDeCuZVQXr2gwk1Z -T  ./$tar_name  \"https://artifactory.gz.cvte.cn/artifactory/binaries/1602/private-be/aoip/$tar_name\"".replace("\n","")
+                    
                     // 清理临时文件
                     sh "rm ${tar_name}"
                 }
