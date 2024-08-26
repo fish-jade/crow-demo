@@ -1,7 +1,7 @@
 def url = 'git@gitlab.gz.cvte.cn:1602/client/aoip/galaxy.git'
 def branch = "${BRANCH}"
 def tag = ""
-def build_image = 'registry.gz.cvte.cn/1602/aoip-ubuntu:1.0.0'
+def build_image = 'registry.gz.cvte.cn/1602/aoip-ubuntu:1.1.0'
 def docker_registry = 'https://registry.gz.cvte.cn'
 
 pipeline {
@@ -23,7 +23,6 @@ pipeline {
                     withDockerRegistry([credentialsId: '6e5c1650-13f9-435e-ad7e-c0a20d0774a1', url: "${docker_registry}"]) {
                         docker.image(build_image).inside("-u root") {
                             sh '''
-                                export PATH=/firefly_buildroot_rk3308_release/host/bin:$PATH
                                 mkdir build
                                 cd build
                                 conan install .. -pr=rc-build-root --build missing -s build_type=Release
