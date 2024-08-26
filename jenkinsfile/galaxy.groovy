@@ -23,6 +23,7 @@ pipeline {
                     withDockerRegistry([credentialsId: '6e5c1650-13f9-435e-ad7e-c0a20d0774a1', url: "${docker_registry}"]) {
                         docker.image(build_image).inside("-u root") {
                             sh '''
+                                export PATH=/firefly_buildroot_rk3308_release/rk3308_linux_release_v1.5.0a_20221212/buildroot/output/firefly_rk3308_release/host/bin:$PATH
                                 mkdir build
                                 cd build
                                 conan install .. -pr=rc-build-root --build missing -s build_type=Release
