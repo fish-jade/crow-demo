@@ -7,11 +7,44 @@ conan install .. --build missing -s build_type=Release
 cmake .. -DCMAKE_BUILD_TYPE=Release --preset conan-release
 cd Release
 make
+./galaxy
 ```
 
 ## 安装conan
 ```
 conan profile detect
+```
+
+## 在Macos中开发调试
+### 安装扩展
+```
+"twxs.cmake",
+"ms-vscode.cmake-tools",
+"josetr.cmake-language-support-vscode",
+"ms-vscode.cpptools"
+```
+### 生成构建配置
+```
+mkdir build
+cd build
+conan install .. --build missing -s build_type=Debug
+cmake .. -DCMAKE_BUILD_TYPE=Debug --preset conan-debug
+```
+### 初始化VScode
+```
+Command + Shift + P
+
+Cmake:Configure
+```
+### Debugger
+```
+可以通过launcher.json进行debug
+```
+
+### 依赖
+[entr](https://github.com/eradman/entr)
+```
+brew install entr
 ```
 
 ## 在ubuntu中交叉编译

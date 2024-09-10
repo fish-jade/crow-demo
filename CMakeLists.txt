@@ -3,7 +3,6 @@ project(galaxy)
 
 # set(CMAKE_C_COMPILER clang)
 # set(CMAKE_CXX_COMPILER clang++)
-
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++")
@@ -20,8 +19,8 @@ set(ASSETS_DESTINATION_DIR "${CMAKE_CURRENT_BINARY_DIR}/assets")
 add_custom_command(
     OUTPUT ${ASSETS_DESTINATION_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${ASSETS_SOURCE_DIR}
-            ${ASSETS_DESTINATION_DIR}
+    ${ASSETS_SOURCE_DIR}
+    ${ASSETS_DESTINATION_DIR}
     DEPENDS ${ASSETS_SOURCE_DIR}
     COMMENT "Copying assets directory"
 )
@@ -35,10 +34,11 @@ add_executable(galaxy main.cpp)
 add_dependencies(galaxy copy_assets)
 
 find_package(Crow)
+
 # 链接 Crow 库和其他依赖
 target_link_libraries(galaxy PUBLIC Crow::Crow)
 
 # 设置 C++ 标准
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14) # C++14 交叉编译工具是6.4.0gcc 17部分支持但不稳定
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
