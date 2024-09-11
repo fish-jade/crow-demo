@@ -1,16 +1,17 @@
 #include <crow.h>
+#include "routes.h"
 
-using namespace std;
-
-int main() 
-{
+int main() {
     crow::SimpleApp app;
 
-    CROW_ROUTE(app, "/")
-    ([]{
-        return "Hello, World from Conan!";
-    });
+    // 设置日志级别
+    crow::logger::setLogLevel(crow::LogLevel::Info);
 
-    app.port(8080).multithreaded().run();
+    // 设置路由
+    setup_routes(app);
+
+    // 启动服务器
+    app.port(80).multithreaded().run();
+
     return 0;
 }
