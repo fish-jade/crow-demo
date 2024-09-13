@@ -39,12 +39,7 @@ Cmake:Configure
 ### Debugger
 ```
 可以通过launcher.json进行debug
-```
-
-### 依赖
-[entr](https://github.com/eradman/entr)
-```
-brew install entr
+// 注意：build type 为debug才可以 debug
 ```
 
 ## 在ubuntu中交叉编译

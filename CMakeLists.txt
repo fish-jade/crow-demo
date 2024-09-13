@@ -44,7 +44,7 @@ find_package(Crow REQUIRED)
 target_link_libraries(galaxy PUBLIC Crow::Crow)
 
 # 设置 C++ 标准
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 14) # 交叉编译的gcc是6.4版本 所以采用14
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

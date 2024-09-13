@@ -5,5 +5,6 @@
   "cmake.generator": "Ninja",
   "cmake.configureArgs": [
     "-DCMAKE_BUILD_TYPE=Debug"
-  ]
+  ],
+  "C_Cpp.intelliSenseEngine": "default"
 }

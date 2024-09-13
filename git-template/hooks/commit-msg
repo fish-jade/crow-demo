@@ -6,7 +6,7 @@ commit_msg=$(cat "$1")
 # 定义 commit message 格式规则
 # 例如：<type>(<scope>): <subject>
 # 类型可以是 feat, fix, docs, style, refactor, test, chore 等
-pattern='^(feat|fix|docs|style|refactor|test|chore)($$[a-z]+$$)?: .{1,50}$'
+pattern='^(revert: )?(feat|fix|docs|style|refactor|perf|test|build|ci|chore)($.+$)?: .{1,50}'
 
 # 检查 commit message 是否符合规则
 if ! echo "$commit_msg" | grep -qE "$pattern"; then
