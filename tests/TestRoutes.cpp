@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 #include <crow.h>
-#include "routes.h"
+#include "Routes.h"
 
 TEST_CASE("Test root route") {
     crow::SimpleApp app;

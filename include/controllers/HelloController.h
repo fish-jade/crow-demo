@@ -3,5 +3,5 @@
 
 class HelloController {
 public:
-    static void init_routes(crow::SimpleApp& app);
+    static void InitRoutes(crow::SimpleApp& app);
 };
