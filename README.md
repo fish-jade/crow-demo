@@ -73,3 +73,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release --preset conan-release
 cd Release
 make
 ```
+
+## 代码规范
+
+https://cvte.kdocs.cn/l/cjSxTVp1QeLl
