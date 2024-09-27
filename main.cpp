@@ -8,7 +8,7 @@ int main() {
     crow::logger::setLogLevel(crow::LogLevel::Info);
 
     // 设置路由
-    setup_routes(app);
+    SetupRoutes(app);
 
     // 启动服务器
     app.port(80).multithreaded().run();
